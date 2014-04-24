@@ -66,13 +66,9 @@ class Logger
         if (!in_array($level, $this->allowedLevels)) {
             return false;
         }
-
-        if (!empty($context['file'])) {
-            foreach ($this->ignoredURLs as $scriptToIgnore) {
-                if (strpos($context['file'], $scriptToIgnore) === 0) {
-                    return false;
-                }
-            }
+        
+        if ($this->isIgnoredFile($context['file']) || $this->isIgnoredFile($context['file'])) {
+            return false;
         }
 
         foreach ($this->ignoredMessages as $errorToIgnore) {
@@ -84,5 +80,17 @@ class Logger
         $this->logger->{$this->levelToMethod[$level]}($message, $context);
 
         return true;
+    }
+    
+    private function isIgnoredFile($filename) 
+    {
+        if (!empty($filename)) {
+            foreach ($this->ignoredURLs as $scriptToIgnore) {
+                if (strpos($filename, $scriptToIgnore) === 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
