@@ -1,3 +1,11 @@
+### 1.2.3 (2015-08-20)
+
+  * Fixed support for Twig 2.0
+
+### 1.2.2 (2015-07-31)
+
+  * Fixed deprecation notice with symfony 2.7
+
 ### 1.2.1 (2013-11-28)
 
   * Fixed undefined index error when using window.log() together with ignored script URLs
